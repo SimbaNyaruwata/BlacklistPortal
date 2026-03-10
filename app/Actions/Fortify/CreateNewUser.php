@@ -30,6 +30,12 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
-        ]);
+        
+         // Auto-assign role
+        'role' => in_array($input['email'], [
+            'admin@admin.com',
+            'simbakeith01@gmail.com',
+        ]) ? 'admin' : 'user',
+    ]);
     }
 }
